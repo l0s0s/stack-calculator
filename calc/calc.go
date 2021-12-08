@@ -1,6 +1,7 @@
 package calc
 
 import (
+	"fmt"
 	"strconv"
 )
 
@@ -57,6 +58,10 @@ func (calc *Calculator) count(symbol string) (int, error) {
 // Calculate return answer to expression.
 func (calc *Calculator) Calculate(expression []string) (int, error) {
 	for _, symbol := range expression {
+		if len (symbol) > 1 {
+			return 0, fmt.Errorf("\ninvalid symbol > %s", symbol)
+		}
+
 		if func() bool {
 			for _, o := range calc.operators {
 				if string(o) == symbol {
