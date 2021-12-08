@@ -25,27 +25,20 @@ type stack interface {
 }
 
 func (calc *Calculator) count(symbol string) (int, error) {
-	if func() bool {
-		for _, o := range calc.operators {
-			if string(o) == symbol {
-				return true
-			}
-		}
-		return false
-	}() {
-		arg1, arg2 := calc.stack.Pop(), calc.stack.Pop()
+	
+	arg2, arg1 := calc.stack.Pop(), calc.stack.Pop()
 
-		switch symbol {
-		case "+":
-			return arg1 + arg2, nil
-		case "-":
-			return arg1 - arg2, nil
-		case "*":
-			return arg1 * arg2, nil
-		case "/":
-			return arg1 / arg2, nil
-		}
+	switch symbol {
+	case "+":
+		return arg1 + arg2, nil
+	case "-":
+		return arg1 - arg2, nil
+	case "*":
+		return arg1 * arg2, nil
+	case "/":
+		return arg1 / arg2, nil
 	}
+	
 
 	number, err := strconv.Atoi(symbol)
 	if err != nil {
