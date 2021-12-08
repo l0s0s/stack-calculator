@@ -24,7 +24,6 @@ type stack interface {
 }
 
 func (calc *Calculator) count(symbol string) (float64, error) {
-	
 	arg2, arg1 := calc.stack.Pop(), calc.stack.Pop()
 
 	switch symbol {
@@ -44,7 +43,7 @@ func (calc *Calculator) count(symbol string) (float64, error) {
 // Calculate return answer to expression.
 func (calc *Calculator) Calculate(expression []string) (float64, error) {
 	for _, symbol := range expression {
-		if len (symbol) > 1 {
+		if len(symbol) > 1 {
 			return 0, InvalidSymbolError(symbol)
 		}
 
