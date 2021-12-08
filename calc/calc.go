@@ -1,7 +1,6 @@
 package calc
 
 import (
-	"fmt"
 	"strconv"
 )
 
@@ -20,11 +19,11 @@ func NewCalculator(operators []rune, stack stack) *Calculator {
 }
 
 type stack interface {
-	Push(stage int)
-	Pop() int
+	Push(stage float64)
+	Pop() float64
 }
 
-func (calc *Calculator) count(symbol string) (int, error) {
+func (calc *Calculator) count(symbol string) (float64, error) {
 	
 	arg2, arg1 := calc.stack.Pop(), calc.stack.Pop()
 
@@ -38,21 +37,15 @@ func (calc *Calculator) count(symbol string) (int, error) {
 	case "/":
 		return arg1 / arg2, nil
 	}
-	
 
-	number, err := strconv.Atoi(symbol)
-	if err != nil {
-		return 0, err
-	}
-
-	return number, nil
+	return 0, InvalidSymbolError(symbol)
 }
 
 // Calculate return answer to expression.
-func (calc *Calculator) Calculate(expression []string) (int, error) {
+func (calc *Calculator) Calculate(expression []string) (float64, error) {
 	for _, symbol := range expression {
 		if len (symbol) > 1 {
-			return 0, fmt.Errorf("\ninvalid symbol > %s", symbol)
+			return 0, InvalidSymbolError(symbol)
 		}
 
 		if func() bool {
@@ -70,7 +63,7 @@ func (calc *Calculator) Calculate(expression []string) (int, error) {
 
 			calc.stack.Push(result)
 		} else {
-			number, err := strconv.Atoi(symbol)
+			number, err := strconv.ParseFloat(symbol, 64)
 			if err != nil {
 				return 0, err
 			}

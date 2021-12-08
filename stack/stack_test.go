@@ -10,7 +10,7 @@ import (
 func TestStack(t *testing.T) {
 	testStack := stack.New()
 	testStack.Push(0)
-	assert.Equal(t, testStack.Pop(), 0)
+	assert.Equal(t, testStack.Pop(), float64(0))
 	testStack.Pop()
-	assert.Equal(t, testStack.Pop(), 0)
+	assert.Equal(t, testStack.Pop(), float64(0))
 }

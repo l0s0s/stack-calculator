@@ -14,5 +14,5 @@ func TestCalc(t *testing.T) {
 	result, err := calculator.Calculate([]string{"1", "1", "+", "3", "*"}) // (1 + 1) * 3
 	require.NoError(t, err)
 
-	assert.Equal(t, result, 6)
+	assert.Equal(t, result, float64(6))
 }
