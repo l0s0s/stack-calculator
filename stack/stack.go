@@ -5,7 +5,7 @@ type Stack struct {
 	stages []float64
 }
 
-// NewStack return new exemplar of stack.
+// New return new exemplar of stack.
 func New() *Stack {
 	return &Stack{
 		stages: make([]float64, 0),

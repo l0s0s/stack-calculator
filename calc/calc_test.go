@@ -11,7 +11,7 @@ import (
 
 func TestCalc_GiveExpresion_6(t *testing.T) {
 	calculator := calc.NewCalculator([]rune("+*"), stack.New())
-	result, err := calculator.Calculate([]string{"1", "1", "+", "3", "*"})// (1 + 1) * 3
+	result, err := calculator.Calculate([]string{"1", "1", "+", "3", "*"}) // (1 + 1) * 3
 	require.NoError(t, err)
 
 	assert.Equal(t, result, float64(6))
